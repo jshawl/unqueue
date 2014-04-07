@@ -6,8 +6,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="Pocket Mark All as Read">
+        <title>Unqueue</title>
+        <meta name="description" content="Archives everything in your pocket queue.">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/style.css">
     </head>
