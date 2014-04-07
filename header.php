@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-      <a href="https://github.com/jshawl/pocket-mark-all-as-read"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
+      <a href="https://github.com/jshawl/unqueue"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
         <div class="intro">
           <h1>Unqueue</h1>
           <p>mark all items in Pocket as read</p>
