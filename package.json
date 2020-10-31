@@ -11,7 +11,7 @@
     "lint": "eslint --max-warnings=0 client/src/components/*.jsx client/src/*.js server/*.js",
     "format": "prettier --write {*,**/*}.{ts,tsx,json,css,scss}",
     "format:check": "prettier --check {*,**/*}.{js,jsx,json,css,scss}",
-    "postinstall": "(cd server && npm install); (cd client && npm install)",
+    "postinstall": "(cd server && npm install && npm run build); (cd client && npm install && npm run build)",
     "heroku-postbuild": "cd client && npm run build"
   },
   "dependencies": {
