@@ -7,7 +7,7 @@
   "author": "Jesse Shawl <jesse@jesse.sh>",
   "license": "MIT",
   "scripts": {
-    "start": "node server/dist/index.js",
+    "start": "node server/dist/server.js",
     "lint": "eslint --max-warnings=0 client/src/components/*.jsx client/src/*.js server/*.js",
     "format": "prettier --write {*,**/*}.{ts,tsx,json,css,scss}",
     "format:check": "prettier --check {*,**/*}.{js,jsx,json,css,scss}",
