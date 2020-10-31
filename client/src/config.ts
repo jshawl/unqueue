@@ -7,7 +7,7 @@ const config: StringIndexable = {
     API_URL: "http://localhost:3000",
   },
   production: {
-    API_URL: "https://httpz.app",
+    API_URL: "https://unqueue.herokuapp.com",
   },
 };
 
