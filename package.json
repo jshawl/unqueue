@@ -1,0 +1,27 @@
+{
+  "name": "unqueue",
+  "description": "Inspect HTTP requests",
+  "version": "1.0.0",
+  "main": "server/index.js",
+  "repository": "https://github.com/jshawl/unqueue.git",
+  "author": "Jesse Shawl <jesse@jesse.sh>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server/dist/index.js",
+    "lint": "eslint --max-warnings=0 client/src/components/*.jsx client/src/*.js server/*.js",
+    "format": "prettier --write {*,**/*}.{ts,tsx,json,css,scss}",
+    "format:check": "prettier --check {*,**/*}.{js,jsx,json,css,scss}",
+    "postinstall": "(cd server && npm install); (cd client && yarn install)",
+    "heroku-postbuild": "cd client && npm run build"
+  },
+  "dependencies": {
+    "prettier": "^1.19.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-flowtype": "^4.6.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0"
+  }
+}
