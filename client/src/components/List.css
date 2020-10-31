@@ -1,0 +1,30 @@
+ul {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  margin-top: 1em;
+}
+
+ul li {
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  list-style: none;
+  padding: 1rem;
+  margin-bottom: 1em;
+}
+
+time {
+  display: block;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.title-link i {
+  display: none;
+}
+
+.title-link:hover i {
+  margin-left: 0.5em;
+  display: inline-block;
+}

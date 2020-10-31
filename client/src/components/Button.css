@@ -1,0 +1,18 @@
+.btn {
+  background: #f04057;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.5em 1em;
+  font-size: 0.8rem;
+  border-radius: 3px;
+  margin: 1em 0;
+  font-size: 1.2rem;
+  position: relative;
+  cursor: pointer;
+}
+
+[data-disabled="true"].btn {
+  background: #fbcfd6;
+  cursor: not-allowed;
+}

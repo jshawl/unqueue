@@ -1,0 +1,43 @@
+html,
+body {
+  font-family: Roboto, sans-serif;
+  color: #333;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+body {
+  padding: 2em;
+}
+
+header h1 {
+  font-size: 1rem;
+  margin: 0;
+}
+header h2 {
+  margin-top: 0;
+  font-size: 0.8rem;
+}
+
+h2 {
+  margin-top: 2em;
+}
+
+header {
+  border-bottom: 1px solid #ebebeb;
+  margin-bottom: 3em;
+}
+
+.center {
+  text-align: center;
+}
+
+i {
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+a {
+  color: #1cb1a9;
+  text-decoration: none;
+}

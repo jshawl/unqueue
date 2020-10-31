@@ -1,0 +1,39 @@
+.Tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag-input {
+  position: relative;
+}
+.tag-input input[type="checkbox"] {
+  position: absolute;
+  left: 0.5em;
+  top: 0.6em;
+}
+
+.Tags label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid#1cb1a9;
+  border-radius: 5px;
+  padding: 0.25em 0.5em;
+  margin-right: 1em;
+  padding-left: 2em;
+  cursor: pointer;
+  margin-bottom: 1em;
+  flex-wrap: nowrap;
+}
+.Tags label strong {
+  margin-left: 0.5em;
+}
+
+.tag {
+  background: #1cb1a9;
+  color: rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
+  padding: 0.25em 0.5em;
+  font-size: 0.8rem;
+  margin-right: 0.5em;
+}
