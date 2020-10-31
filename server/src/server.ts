@@ -13,8 +13,10 @@ const pocket = new PocketClient(
 
 const token = (string: string) => string.replace(/Bearer\ /, "") ?? "";
 
+const clientPath = path.join(__dirname, "/../../client/build");
+
 app.use(cors());
-app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(clientPath));
 
 app.get("/auth", async (req, res) => {
   res.send({ url: pocket.getAuthorizationURL(await pocket.getRequestToken()) });
@@ -36,8 +38,8 @@ app.get("/api/list", async (req, res) => {
   res.send(await pocket.list(accessToken, req.query as Params));
 });
 
-app.get("/", (_req, res) => {
-  res.sendFile(path.join(__dirname + "/../../client/build/index.html"));
+app.get("*", (_req, res) => {
+  res.sendFile(`${clientPath}/index.html`);
 });
 
 app.listen(process.env.PORT ?? 3000);
