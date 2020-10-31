@@ -2,6 +2,7 @@ require("dotenv").config();
 import express from "express";
 import { PocketClient, Params } from "./lib/pocket";
 import cors from "cors";
+import path from "path";
 
 const app = express();
 
@@ -13,6 +14,7 @@ const pocket = new PocketClient(
 const token = (string: string) => string.replace(/Bearer\ /, "") ?? "";
 
 app.use(cors());
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get("/auth", async (req, res) => {
   res.send({ url: pocket.getAuthorizationURL(await pocket.getRequestToken()) });
