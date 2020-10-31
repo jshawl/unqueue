@@ -36,4 +36,8 @@ app.get("/api/list", async (req, res) => {
   res.send(await pocket.list(accessToken, req.query as Params));
 });
 
-app.listen(3000);
+app.get("*", (_req, res) => {
+  res.sendFile(path.join(__dirname + "/../../client/build/index.html"));
+});
+
+app.listen(process.env.PORT ?? 3000);
