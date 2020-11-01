@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node --inspect=5858 -r ts-node/register ./src/server.ts",
     "start:watch": "nodemon",
-    "test": "npx jest",
+    "test": "jest src",
     "build": "tsc"
   },
   "keywords": [],
