@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test src",
+    "test": "react-scripts test src --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
