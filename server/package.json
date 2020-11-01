@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node --inspect=5858 -r ts-node/register ./server.ts",
+    "start": "node --inspect=5858 -r ts-node/register ./src/server.ts",
     "start:watch": "nodemon",
+    "test": "jest src --coverage",
     "build": "tsc"
   },
   "keywords": [],
@@ -23,7 +24,7 @@
     "@types/axios": "^0.14.0",
     "@types/cors": "^2.8.8",
     "@types/express": "^4.17.8",
-    "@types/jest": "^26.0.14",
+    "@types/jest": "^26.0.15",
     "@types/node": "^14.14.6",
     "@types/request": "^2.48.5",
     "jest": "^26.4.2",
@@ -39,8 +40,8 @@
       "node_modules"
     ],
     "watch": [
-      "*.ts",
-      "lib/*.ts"
+      "src/*.ts",
+      "src/lib/*.ts"
     ],
     "exec": "npm start",
     "ext": "ts"

@@ -89,13 +89,7 @@ export const useMarkItemsRead = (
   //     },
   //   }
   // );
-  // return {
-  //   markItemsRead: post as () => Promise<unknown>,
-  // };
+  return {
+    markItemsRead: () => Promise.resolve({ status: 1 }),
+  };
 };
-
-// export const usePocketApi = (accessToken: string) => {
-//   return {
-//     useGetPocketList(accessToken),
-//   };
-// };

@@ -10,6 +10,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "@types/testing-library__react": "^10.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
@@ -19,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test src --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -38,7 +39,6 @@
     ]
   },
   "devDependencies": {
-    "@types/testing-library__react": "^10.2.0",
     "jest-fetch-mock": "^3.0.3",
     "ts-jest": "^26.4.2"
   }

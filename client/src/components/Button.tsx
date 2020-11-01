@@ -19,13 +19,13 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <a href={href} className="btn" onClick={onClick} data-disabled={disabled}>
-      {disabled && (
+      {/* {disabled && (
         <i
           className="em em-white_check_mark"
           aria-label="WHITE HEAVY CHECK MARK"
           style={{ opacity: 0.75 }}
         ></i>
-      )}
+      )} */}
       {loading ? <Loading text={text} /> : <>{text}</>}
     </a>
   );

@@ -16,7 +16,7 @@ export const App: React.FC<AppProps> = ({ items, tags }) => {
   const [selectedTags, setSelectedTags] = useState(tags);
 
   const [loading, setLoading] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  const [complete, setComplete] = useState(false);
 
   const filteredItems = items.filter((item) =>
     item.tags.some((tag) => selectedTags[tag]?.checked)
@@ -28,31 +28,31 @@ export const App: React.FC<AppProps> = ({ items, tags }) => {
 
   const onMarkRead = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (disabled) return;
+    if (complete) return;
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      setDisabled(true);
-    }, 1000);
+      setComplete(true);
+    }, 2000);
   };
   return (
     <div>
       <div className="center">
         <Button
-          text={`Mark${disabled ? "ed" : ""} ${
+          text={`Mark${complete ? "ed" : ""} ${
             filteredItems.length
           } items read`}
           onClick={onMarkRead}
           loading={loading}
-          disabled={disabled || filteredItems.length === 0}
+          disabled={complete || filteredItems.length === 0}
         />
         <p>
           Your articles will still be searchable at Pocket's{" "}
           <a href="https://app.getpocket.com/archive">archive url</a>.
         </p>
       </div>
-      {disabled ? (
-        <></>
+      {complete ? (
+        <>all done</>
       ) : (
         <>
           <h2>

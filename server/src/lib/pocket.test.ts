@@ -1,6 +1,6 @@
 const response = jest.fn();
 
-jest.mock("request", () => ({ post: () => Promise.resolve(response()) }));
+jest.mock("axios", () => ({ request: () => Promise.resolve(response()) }));
 
 const { PocketClient } = require("./pocket");
 
@@ -11,7 +11,9 @@ describe("PocketClient", () => {
   });
   it("gets request tokens", async () => {
     response.mockImplementationOnce(() => ({
-      code: "123",
+      data: {
+        code: "123",
+      },
     }));
     const token = await pocket.getRequestToken();
     expect(token).toBe("123");
@@ -21,7 +23,9 @@ describe("PocketClient", () => {
   });
   it("gets access tokens", async () => {
     response.mockImplementationOnce(() => ({
-      access_token: "123-abc",
+      data: {
+        access_token: "123-abc",
+      },
     }));
     expect(await pocket.getAccessToken("")).toBe("123-abc");
   });

@@ -1,10 +1,8 @@
-const queryString = jest.fn();
-const removeQueryString = jest.fn();
-
 jest.mock("../utilities", () => ({
-  queryString,
-  removeQueryString,
+  queryString: jest.fn(),
+  removeQueryString: jest.fn(),
 }));
+import { queryString, removeQueryString } from "../utilities";
 
 import { useAccessToken, LOCAL_STORAGE_KEY } from "./useAccessToken";
 const ACCESS_TOKEN = "abc-123";
