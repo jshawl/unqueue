@@ -12,6 +12,17 @@
   top: 0.6em;
 }
 
+.tag-input input[type="checkbox"] + label {
+  font-style: italic;
+  opacity: 0.5;
+}
+
+.tag-input input[type="checkbox"]:checked + label {
+  font-style: normal;
+  color: inherit;
+  opacity: 1;
+}
+
 .Tags label {
   display: flex;
   align-items: center;

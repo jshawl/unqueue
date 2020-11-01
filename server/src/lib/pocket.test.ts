@@ -1,6 +1,8 @@
+import { idText } from "typescript";
+
 const response = jest.fn();
 
-jest.mock("request", () => ({ post: () => Promise.resolve(response()) }));
+jest.mock("axios", () => ({ request: () => Promise.resolve(response()) }));
 
 const { PocketClient } = require("./pocket");
 
@@ -11,7 +13,9 @@ describe("PocketClient", () => {
   });
   it("gets request tokens", async () => {
     response.mockImplementationOnce(() => ({
-      code: "123",
+      data: {
+        code: "123",
+      },
     }));
     const token = await pocket.getRequestToken();
     expect(token).toBe("123");
@@ -21,8 +25,26 @@ describe("PocketClient", () => {
   });
   it("gets access tokens", async () => {
     response.mockImplementationOnce(() => ({
-      access_token: "123-abc",
+      data: {
+        access_token: "123-abc",
+      },
     }));
     expect(await pocket.getAccessToken("")).toBe("123-abc");
+  });
+  it("marks all items read", async () => {
+    response.mockImplementationOnce(() => ({
+      data: { action_results: [true], status: 1 },
+    }));
+    expect(
+      await pocket.modify({
+        actions: [
+          {
+            action: "archive",
+            time: 12345,
+            item_id: "123",
+          },
+        ],
+      })
+    ).toStrictEqual({ action_results: [true], status: 1 });
   });
 });

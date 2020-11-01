@@ -1,10 +1,8 @@
-const queryString = jest.fn();
-const removeQueryString = jest.fn();
-
 jest.mock("../utilities", () => ({
-  queryString,
-  removeQueryString,
+  queryString: jest.fn(),
+  removeQueryString: jest.fn(),
 }));
+import { queryString, removeQueryString } from "../utilities";
 
 import { useAccessToken, LOCAL_STORAGE_KEY } from "./useAccessToken";
 const ACCESS_TOKEN = "abc-123";
@@ -38,7 +36,7 @@ describe("useAccessToken", () => {
   });
   it("can update local storage (log out)", () => {
     queryString.mockImplementation(() => `?accessToken=${ACCESS_TOKEN}`);
-    let { accessToken, setAccessToken } = useAccessToken();
+    let { setAccessToken } = useAccessToken();
     expect(localStorage.getItem(LOCAL_STORAGE_KEY)).toBe(ACCESS_TOKEN);
     setAccessToken("");
     queryString.mockImplementation(() => "");

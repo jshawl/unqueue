@@ -6,6 +6,8 @@ import { Tags, Tag } from "./Tags";
 import "./App.css";
 import { StringIndexable } from "../utilities";
 import { FormattedPocketListItem } from "./List";
+import { useAccessToken, useMarkItemsRead } from "../hooks";
+import { Complete } from "./Complete";
 
 interface AppProps {
   items: FormattedPocketListItem[];
@@ -14,13 +16,14 @@ interface AppProps {
 
 export const App: React.FC<AppProps> = ({ items, tags }) => {
   const [selectedTags, setSelectedTags] = useState(tags);
-
-  const [loading, setLoading] = useState(false);
-  const [disabled, setDisabled] = useState(false);
-
+  const { accessToken, setAccessToken } = useAccessToken();
   const filteredItems = items.filter((item) =>
     item.tags.some((tag) => selectedTags[tag]?.checked)
   );
+  const { markItemsRead } = useMarkItemsRead(accessToken, filteredItems);
+
+  const [loading, setLoading] = useState(false);
+  const [complete, setComplete] = useState(false);
 
   useEffect(() => {
     setSelectedTags((existing) => ({ ...tags, ...existing }));
@@ -28,31 +31,31 @@ export const App: React.FC<AppProps> = ({ items, tags }) => {
 
   const onMarkRead = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (disabled) return;
+    if (complete) return;
     setLoading(true);
-    setTimeout(() => {
+    markItemsRead().then((res) => {
       setLoading(false);
-      setDisabled(true);
-    }, 1000);
+      setComplete(true);
+    });
   };
   return (
     <div>
       <div className="center">
         <Button
-          text={`Mark${disabled ? "ed" : ""} ${
+          text={`Mark${complete ? "ed" : ""} ${
             filteredItems.length
           } items read`}
           onClick={onMarkRead}
           loading={loading}
-          disabled={disabled || filteredItems.length === 0}
+          disabled={complete || filteredItems.length === 0}
         />
         <p>
           Your articles will still be searchable at Pocket's{" "}
           <a href="https://app.getpocket.com/archive">archive url</a>.
         </p>
       </div>
-      {disabled ? (
-        <></>
+      {complete ? (
+        <Complete />
       ) : (
         <>
           <h2>
@@ -71,10 +74,16 @@ export const App: React.FC<AppProps> = ({ items, tags }) => {
               </>
             )}
           </h2>
+          {!items.length && (
+            <p>There are no unarchived articles in your Pocket queue.</p>
+          )}
           <Tags tags={selectedTags} onSelect={setSelectedTags} />
           <List items={filteredItems} tags={selectedTags} />
         </>
       )}
+      <a href="/" onClick={() => setAccessToken("")}>
+        Log out
+      </a>
     </div>
   );
 };

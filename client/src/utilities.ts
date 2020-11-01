@@ -6,3 +6,8 @@ export const queryString = () => window.location.search;
 export const removeQueryString = () => (window.location.search = "");
 
 export type StringIndexable<T> = { [key: string]: T };
+
+export default {
+  queryString,
+  removeQueryString,
+};
