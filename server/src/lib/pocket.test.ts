@@ -36,13 +36,15 @@ describe("PocketClient", () => {
       data: { action_results: [true], status: 1 },
     }));
     expect(
-      await pocket.modify([
-        {
-          action: "archive",
-          time: 12345,
-          item_id: "123",
-        },
-      ])
+      await pocket.modify({
+        actions: [
+          {
+            action: "archive",
+            time: 12345,
+            item_id: "123",
+          },
+        ],
+      })
     ).toStrictEqual({ action_results: [true], status: 1 });
   });
 });

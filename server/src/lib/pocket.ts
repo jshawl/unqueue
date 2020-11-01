@@ -68,7 +68,7 @@ export class PocketClient {
     const data = {
       consumer_key: this.consumerKey,
       access_token: accessToken,
-      actions: payload.actions,
+      actions: payload?.actions,
     };
     const result = await http.request({
       headers: {
