@@ -2,6 +2,12 @@ import http from "axios";
 
 export type Params = { [key: string]: string };
 
+type Action = {
+  action: string;
+  item_id: string;
+  time: string;
+};
+
 export class PocketClient {
   consumerKey: string;
   redirectURI: string;
@@ -58,7 +64,21 @@ export class PocketClient {
     });
     return result.data.list;
   }
-  async archive(accessToken: string, ids: number[]) {
-    // todo
+  async modify(accessToken: string, payload: { actions: Action[] }) {
+    const data = {
+      consumer_key: this.consumerKey,
+      access_token: accessToken,
+      actions: payload.actions,
+    };
+    const result = await http.request({
+      headers: {
+        "Content-Type": "application/json",
+        "X-Accept": "application/json",
+      },
+      method: "POST",
+      data,
+      url: `https://getpocket.com/v3/send`,
+    });
+    return result.data;
   }
 }

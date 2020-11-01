@@ -6,6 +6,7 @@ import { Tags, Tag } from "./Tags";
 import "./App.css";
 import { StringIndexable } from "../utilities";
 import { FormattedPocketListItem } from "./List";
+import { useAccessToken, useMarkItemsRead } from "../hooks";
 
 interface AppProps {
   items: FormattedPocketListItem[];
@@ -14,6 +15,8 @@ interface AppProps {
 
 export const App: React.FC<AppProps> = ({ items, tags }) => {
   const [selectedTags, setSelectedTags] = useState(tags);
+  const { accessToken } = useAccessToken();
+  const { markItemsRead } = useMarkItemsRead(accessToken, items);
 
   const [loading, setLoading] = useState(false);
   const [complete, setComplete] = useState(false);
@@ -30,10 +33,11 @@ export const App: React.FC<AppProps> = ({ items, tags }) => {
     e.preventDefault();
     if (complete) return;
     setLoading(true);
-    setTimeout(() => {
+    markItemsRead().then((res) => {
       setLoading(false);
       setComplete(true);
-    }, 2000);
+      console.log(res);
+    });
   };
   return (
     <div>

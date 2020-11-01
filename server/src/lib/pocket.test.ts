@@ -1,3 +1,5 @@
+import { idText } from "typescript";
+
 const response = jest.fn();
 
 jest.mock("axios", () => ({ request: () => Promise.resolve(response()) }));
@@ -28,5 +30,19 @@ describe("PocketClient", () => {
       },
     }));
     expect(await pocket.getAccessToken("")).toBe("123-abc");
+  });
+  it("marks all items read", async () => {
+    response.mockImplementationOnce(() => ({
+      data: { action_results: [true], status: 1 },
+    }));
+    expect(
+      await pocket.modify([
+        {
+          action: "archive",
+          time: 12345,
+          item_id: "123",
+        },
+      ])
+    ).toStrictEqual({ action_results: [true], status: 1 });
   });
 });

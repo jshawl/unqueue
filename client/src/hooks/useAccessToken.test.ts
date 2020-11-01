@@ -36,7 +36,7 @@ describe("useAccessToken", () => {
   });
   it("can update local storage (log out)", () => {
     queryString.mockImplementation(() => `?accessToken=${ACCESS_TOKEN}`);
-    let { accessToken, setAccessToken } = useAccessToken();
+    let { setAccessToken } = useAccessToken();
     expect(localStorage.getItem(LOCAL_STORAGE_KEY)).toBe(ACCESS_TOKEN);
     setAccessToken("");
     queryString.mockImplementation(() => "");

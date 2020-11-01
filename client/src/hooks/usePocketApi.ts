@@ -77,19 +77,19 @@ export const useMarkItemsRead = (
   accessToken: string,
   items: FormattedPocketListItem[]
 ) => {
-  // const [data, setData] = useState<PocketList>({});
-  // const { post, loading, error } = useFetch<{ ids: [] }>(
-  //   `${API_URL}/api/update`,
-  //   {
-  //     body: {
-  //       ids: Object.keys(items),
-  //     },
-  //     headers: {
-  //       Authorization: `Bearer ${accessToken}`,
-  //     },
-  //   }
-  // );
+  const actions = items.map((item) => ({
+    item_id: item.id,
+    action: "archive",
+  }));
+
+  console.log("actions", actions);
+  const { post, loading, error } = useFetch(`${API_URL}/api`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  console.log("loading, error", loading, error);
   return {
-    markItemsRead: () => Promise.resolve({ status: 1 }),
+    markItemsRead: () => post("/modify", { actions }),
   };
 };

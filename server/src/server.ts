@@ -1,10 +1,13 @@
 require("dotenv").config();
 import express from "express";
+import bodyParser from "body-parser";
 import { PocketClient, Params } from "./lib/pocket";
 import cors from "cors";
 import path from "path";
 
 const app = express();
+
+app.use(bodyParser.json());
 
 const pocket = new PocketClient(
   process.env.POCKET_CONSUMER_KEY!,
@@ -34,8 +37,15 @@ app.get("/api/list", async (req, res) => {
     return res.status(403).end();
   }
   const accessToken = token(req.headers.authorization);
-
   res.send(await pocket.list(accessToken, req.query as Params));
+});
+
+app.post("/api/modify", async (req, res) => {
+  if (!req.headers.authorization) {
+    return res.status(403).end();
+  }
+  const accessToken = token(req.headers.authorization);
+  res.send(await pocket.modify(accessToken, req.body));
 });
 
 app.get("*", (_req, res) => {
