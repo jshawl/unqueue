@@ -1,4 +1,5 @@
 import fetch, { FetchMock } from "jest-fetch-mock";
+import { FormattedPocketListItem } from "../components/List";
 // const fetch = window.fetch as FetchMock;
 global.fetch = fetch;
 fetch.enableMocks();
@@ -10,7 +11,10 @@ import { useGetPocketList, useMarkItemsRead } from "./usePocketApi";
 
 const HookInspector: React.FC = () => {
   const { items } = useGetPocketList("abc");
-  const { markItemsRead } = useMarkItemsRead("abc", [{ id: "1" }, { id: "2" }]);
+  const { markItemsRead } = useMarkItemsRead("abc", [
+    { id: "1" } as FormattedPocketListItem,
+    { id: "2" } as FormattedPocketListItem,
+  ]);
   const [isMarked, setIsMarked] = useState<any>();
   return (
     <div>
