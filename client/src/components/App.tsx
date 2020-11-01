@@ -7,6 +7,7 @@ import "./App.css";
 import { StringIndexable } from "../utilities";
 import { FormattedPocketListItem } from "./List";
 import { useAccessToken, useMarkItemsRead } from "../hooks";
+import { Complete } from "./Complete";
 
 interface AppProps {
   items: FormattedPocketListItem[];
@@ -15,15 +16,14 @@ interface AppProps {
 
 export const App: React.FC<AppProps> = ({ items, tags }) => {
   const [selectedTags, setSelectedTags] = useState(tags);
-  const { accessToken } = useAccessToken();
-  const { markItemsRead } = useMarkItemsRead(accessToken, items);
-
-  const [loading, setLoading] = useState(false);
-  const [complete, setComplete] = useState(false);
-
+  const { accessToken, setAccessToken } = useAccessToken();
   const filteredItems = items.filter((item) =>
     item.tags.some((tag) => selectedTags[tag]?.checked)
   );
+  const { markItemsRead } = useMarkItemsRead(accessToken, filteredItems);
+
+  const [loading, setLoading] = useState(false);
+  const [complete, setComplete] = useState(false);
 
   useEffect(() => {
     setSelectedTags((existing) => ({ ...tags, ...existing }));
@@ -36,7 +36,6 @@ export const App: React.FC<AppProps> = ({ items, tags }) => {
     markItemsRead().then((res) => {
       setLoading(false);
       setComplete(true);
-      console.log(res);
     });
   };
   return (
@@ -56,7 +55,7 @@ export const App: React.FC<AppProps> = ({ items, tags }) => {
         </p>
       </div>
       {complete ? (
-        <>all done</>
+        <Complete />
       ) : (
         <>
           <h2>
@@ -75,10 +74,16 @@ export const App: React.FC<AppProps> = ({ items, tags }) => {
               </>
             )}
           </h2>
+          {!items.length && (
+            <p>There are no unarchived articles in your Pocket queue.</p>
+          )}
           <Tags tags={selectedTags} onSelect={setSelectedTags} />
           <List items={filteredItems} tags={selectedTags} />
         </>
       )}
+      <a href="/" onClick={() => setAccessToken("")}>
+        Log out
+      </a>
     </div>
   );
 };

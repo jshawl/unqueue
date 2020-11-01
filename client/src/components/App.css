@@ -8,6 +8,8 @@ body {
 
 body {
   padding: 2em;
+  max-width: 50em;
+  margin: auto;
 }
 
 header h1 {

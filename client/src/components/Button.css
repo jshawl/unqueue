@@ -10,6 +10,13 @@
   font-size: 1.2rem;
   position: relative;
   cursor: pointer;
+  border: none;
+  font: inherit;
+  outline: none;
+}
+
+.btn.alternate {
+  background: #1cb1a9;
 }
 
 [data-disabled="true"].btn {

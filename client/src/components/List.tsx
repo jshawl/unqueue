@@ -33,7 +33,7 @@ export const List: React.FC<ListProps> = ({ items, tags }) => {
       {items.map((item) => (
         <li key={item.id}>
           <strong>
-            <a href={item.url} className="title-link">
+            <a href={item.url} className="title-link" target="_blank">
               {item.title}
               <i className="em em-link" aria-label="LINK SYMBOL"></i>
             </a>
