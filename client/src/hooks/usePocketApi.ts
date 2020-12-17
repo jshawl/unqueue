@@ -50,7 +50,7 @@ export const formattedItems = (data?: PocketList) => {
 export const useGetPocketList = (accessToken: string) => {
   const [data, setData] = useState<PocketList>({});
   const { get, loading, error } = useFetch<PocketList>(
-    `${API_URL}/api/list?count=10&detailType=complete`,
+    `${API_URL}/api/list?count=1000&detailType=complete`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,
