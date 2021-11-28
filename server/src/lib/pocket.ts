@@ -40,6 +40,7 @@ export class PocketClient {
           "Content-Type": "application/json",
           "X-Accept": "application/json",
         },
+        method: "POST",
         url: "https://getpocket.com/v3/oauth/authorize",
         data: {
           consumer_key: this.consumerKey,
