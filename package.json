@@ -25,9 +25,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0"
   },
-  {
-    "engines": {
-      "node": "16"
-    }
+  "engines": {
+    "node": "16"
   }
 }
