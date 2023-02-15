@@ -43,9 +43,7 @@
     "jest-fetch-mock": "^3.0.3",
     "ts-jest": "^26.4.2"
   },
-  {
-    "engines": {
-      "node": "16"
-    }
+  "engines": {
+    "node": "16"
   }
 }
