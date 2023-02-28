@@ -51,7 +51,7 @@ export const App: React.FC<AppProps> = ({ items, tags }) => {
         />
         <p>
           Your articles will still be searchable at Pocket's{" "}
-          <a href="https://app.getpocket.com/archive">archive url</a>.
+          <a href="https://getpocket.com/saves/archive">archive url</a>.
         </p>
       </div>
       {complete ? (
